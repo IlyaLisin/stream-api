@@ -13,10 +13,6 @@ type Stream struct {
 	machine *fsm.Machine
 }
 
-type Rules struct {
-	rules *fsm.Ruleset
-}
-
 func newRules () *fsm.Ruleset {
 	// Establish some rules for our FSM
 	rules := fsm.Ruleset{}
@@ -47,15 +43,15 @@ func (t *Stream) Apply(r *fsm.Ruleset) *fsm.Machine {
 func main() {
 	var err error
 
-	some_thing := Stream{State: "created"} // Our subject
-	fmt.Println(some_thing)
+	some_stream := Stream{State: "created"} // Our subject
+	fmt.Println(some_stream)
 
 	rules := newRules()
 
-	err = some_thing.Apply(rules).Transition("active")
+	err = some_stream.Apply(rules).Transition("active")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println(some_thing, "11111111")
+	fmt.Println("status", some_stream)
 }
